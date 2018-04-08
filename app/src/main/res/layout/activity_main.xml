@@ -1,68 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/my__layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/status_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Status : No song selected"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.245" />
+    <!--<TextView-->
+        <!--android:id="@+id/status_textview"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Status : No song selected"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintVertical_bias="0.245" />-->
 
-    <Button
-        android:id="@+id/play_btnview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="27dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="272dp"
-        android:text="Play"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/next_btnview"
-        app:layout_constraintStart_toEndOf="@+id/prev_btnview"
-        app:layout_constraintTop_toBottomOf="@+id/status_textview" />
+    <!--<Button-->
+        <!--android:id="@+id/play_btnview"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="52dp"-->
+        <!--android:layout_marginEnd="27dp"-->
+        <!--android:layout_marginLeft="18dp"-->
+        <!--android:layout_marginRight="27dp"-->
+        <!--android:layout_marginStart="18dp"-->
+        <!--android:layout_marginTop="272dp"-->
+        <!--android:text="Play"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toStartOf="@+id/next_btnview"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/prev_btnview"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/status_textview" />-->
 
-    <Button
-        android:id="@+id/prev_btnview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="51dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="18dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="272dp"
-        android:text="Prev"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/play_btnview"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status_textview" />
+    <!--<Button-->
+        <!--android:id="@+id/prev_btnview"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="51dp"-->
+        <!--android:layout_marginEnd="18dp"-->
+        <!--android:layout_marginLeft="35dp"-->
+        <!--android:layout_marginRight="18dp"-->
+        <!--android:layout_marginStart="35dp"-->
+        <!--android:layout_marginTop="272dp"-->
+        <!--android:text="Prev"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toStartOf="@+id/play_btnview"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/status_textview" />-->
 
-    <Button
-        android:id="@+id/next_btnview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="53dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="271dp"
-        android:text="Next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/play_btnview"
-        app:layout_constraintTop_toBottomOf="@+id/status_textview" />
+    <!--<Button-->
+        <!--android:id="@+id/next_btnview"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="53dp"-->
+        <!--android:layout_marginEnd="40dp"-->
+        <!--android:layout_marginLeft="27dp"-->
+        <!--android:layout_marginRight="40dp"-->
+        <!--android:layout_marginStart="27dp"-->
+        <!--android:layout_marginTop="271dp"-->
+        <!--android:text="Next"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/play_btnview"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/status_textview" />-->
 
 </android.support.constraint.ConstraintLayout>
