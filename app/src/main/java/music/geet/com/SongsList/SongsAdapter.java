@@ -1,6 +1,8 @@
 package music.geet.com.SongsList;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,11 +33,11 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongsViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SongsViewHolder holder, int position) {
+    public void onBindViewHolder(SongsViewHolder holder, int position) {
         SongsModel model = songsList.get(position);
         holder.Songname.setText(model.getSong_name());
         holder.Artistname.setText(model.getArtist_name());
-         holder.album_art.setImageResource(model.getAlbumn_art());
+         holder.album_art.setImageBitmap(model.getAlbumn_art());
 
     }
 
