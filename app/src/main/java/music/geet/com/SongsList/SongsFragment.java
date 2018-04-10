@@ -4,13 +4,14 @@ package music.geet.com.SongsList;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -65,17 +66,27 @@ public class SongsFragment extends Fragment {
         ContentResolver resolver=applicationContext.getContentResolver();
         Uri uri= MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         Cursor songsCursor=resolver.query(uri,null,null,null,null);
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+//            Cursor albumCursor=resolver.query(uri,
+//                    new String[]{MediaStore.Audio.Albums._ID,MediaStore.Audio.Albums.ALBUM_ART},
+//                    MediaStore.Audio.Albums._ID+"+?"
+//                    ,new String[]{String.valueOf()});
+      //  }
         if(songsCursor!=null&&songsCursor.moveToFirst()){
             int SongsIndex=songsCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
             int ArtistIndex=songsCursor.getColumnIndex(MediaStore.Audio.Artists.ARTIST);
-            String AlbumArtIndex= String.valueOf(songsCursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ART));
+            int AlbumArtIndex= songsCursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ART);
+
 
             do{
                 String currentSong_Name=songsCursor.getString(SongsIndex);
                 String currentArtist_Name=songsCursor.getString(ArtistIndex);
-                int currentAlbum_Art= (songsCursor.getColumnIndex(AlbumArtIndex));
+               String currentAlbum_Art= String.valueOf(((songsCursor.getInt(AlbumArtIndex))));
 
-                SongsModel model=new SongsModel(currentSong_Name,currentArtist_Name,currentAlbum_Art);
+                Bitmap bm=BitmapFactory.decodeFile(currentAlbum_Art);
+
+
+                SongsModel model=new SongsModel(currentSong_Name,currentArtist_Name,bm);
                 list.add(model);
 
             }
