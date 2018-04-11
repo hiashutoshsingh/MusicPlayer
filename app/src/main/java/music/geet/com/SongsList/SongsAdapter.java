@@ -48,14 +48,14 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongsViewHol
 
     public class SongsViewHolder extends RecyclerView.ViewHolder {
         private TextView Songname, Artistname;
-        private ImageView album_art;
+        private CircleImageView album_art;
 
 
         public SongsViewHolder(View itemView) {
             super(itemView);
             Songname = (TextView) itemView.findViewById(R.id.song_name);
             Artistname = (TextView) itemView.findViewById(R.id.artist_name);
-            album_art=(ImageView) itemView.findViewById(R.id.albumb_art);
+            album_art=(CircleImageView) itemView.findViewById(R.id.albumb_art);
         }
     }
 }
