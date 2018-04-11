@@ -9,8 +9,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,9 +40,9 @@ public class SongsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView( LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_songs, container);
         songsrcv = v.findViewById(R.id.songslistRecycler);
 
