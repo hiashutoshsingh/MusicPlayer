@@ -9,11 +9,10 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,7 @@ import music.geet.com.R;
  */
 public class SongsFragment extends Fragment {
     public RecyclerView songsrcv;
-    public TextView songs_name,artist_name;
+    public TextView songs_name, artist_name;
     public ImageView album_art;
     private SongsAdapter adapter;
     public List<SongsModel> list;
@@ -41,62 +40,58 @@ public class SongsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.fragment_songs,container);
-        songsrcv=v.findViewById(R.id.songslistRecycler);
 
-        artist_name=(TextView)v.findViewById(R.id.artist_name);
-        songs_name=(TextView)v.findViewById(R.id.song_name);
-        album_art=(ImageView)v.findViewById(R.id.albumb_art);
+    @Override
+    public View onCreateView( LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_songs, container);
+        songsrcv = v.findViewById(R.id.songslistRecycler);
+
+        artist_name = (TextView) v.findViewById(R.id.artist_name);
+        songs_name = (TextView) v.findViewById(R.id.song_name);
+        album_art = (ImageView) v.findViewById(R.id.albumb_art);
         songsrcv.setLayoutManager(new LinearLayoutManager(getContext()));
-        list=new ArrayList<>();
+        list = new ArrayList<>();
         getMusic();
-        adapter=new SongsAdapter(list,getContext());
+        adapter = new SongsAdapter(list, getContext());
         songsrcv.setAdapter(adapter);
 
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
 
+    public List getMusic() {
 
-    public List getMusic(){
-        Context applicationContext= MainActivity.getContextOfApplication();
-        ContentResolver resolver=applicationContext.getContentResolver();
-        Uri uri= MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        Cursor songsCursor=resolver.query(uri,null,null,null,null);
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-//            Cursor albumCursor=resolver.query(uri,
-//                    new String[]{MediaStore.Audio.Albums._ID,MediaStore.Audio.Albums.ALBUM_ART},
-//                    MediaStore.Audio.Albums._ID+"+?"
-//                    ,new String[]{String.valueOf()});
-      //  }
-        if(songsCursor!=null&&songsCursor.moveToFirst()){
-            int SongsIndex=songsCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
-            int ArtistIndex=songsCursor.getColumnIndex(MediaStore.Audio.Artists.ARTIST);
-            int AlbumArtIndex= songsCursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ART);
+        Context applicationContext = MainActivity.getContextOfApplication();
+        ContentResolver resolver = applicationContext.getContentResolver();
+        Uri albumuri=MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI;
+        Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        Cursor songsCursor = resolver.query(uri, null, null, null, null);
+        Cursor AlbumCursor=resolver.query(albumuri,null,null,null,null);
+
+        if (songsCursor != null && songsCursor.moveToFirst()&&AlbumCursor !=null&&AlbumCursor.moveToFirst()) {
+            int SongsIndex = songsCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
+            int ArtistIndex = songsCursor.getColumnIndex(MediaStore.Audio.Artists.ARTIST);
+            int AlbumArtIndex = AlbumCursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM_ART);
 
 
-            do{
-                String currentSong_Name=songsCursor.getString(SongsIndex);
-                String currentArtist_Name=songsCursor.getString(ArtistIndex);
-               String currentAlbum_Art= String.valueOf(((songsCursor.getInt(AlbumArtIndex))));
-
+            do {
+                String currentSong_Name = songsCursor.getString(SongsIndex);
+                String currentArtist_Name = songsCursor.getString(ArtistIndex);
+                String currentAlbum_Art = AlbumCursor.getString(AlbumArtIndex);
                 Bitmap bm=BitmapFactory.decodeFile(currentAlbum_Art);
 
 
-                SongsModel model=new SongsModel(currentSong_Name,currentArtist_Name,bm);
+                SongsModel model = new SongsModel(currentSong_Name, currentArtist_Name, bm);
                 list.add(model);
 
             }
-            while (songsCursor.moveToNext());
+            while (songsCursor.moveToNext()&&AlbumCursor.moveToNext());
         }
 
         return list;
 
 
-
-
     }
+
+
 }
